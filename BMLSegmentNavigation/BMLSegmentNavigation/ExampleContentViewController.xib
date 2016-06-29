@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExampleContentViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcH-wG-CSh">
+                    <rect key="frame" x="241" y="105" width="45" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="HcH-wG-CSh" secondAttribute="height" multiplier="23:15" constant="-1" id="Cnb-Wt-24p"/>
+                        <constraint firstAttribute="width" constant="45" id="Va6-Fm-SkM"/>
+                    </constraints>
+                    <state key="normal" title="下一页"/>
+                    <connections>
+                        <action selector="nextButton:" destination="-1" eventType="touchUpInside" id="OgS-tl-zq7"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59d-qs-j5o">
+                    <rect key="frame" x="35" y="105" width="45" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="9Np-9O-dyx"/>
+                        <constraint firstAttribute="width" secondItem="59d-qs-j5o" secondAttribute="height" multiplier="3:2" id="mBR-VT-8u8"/>
+                    </constraints>
+                    <state key="normal" title="上一页"/>
+                    <connections>
+                        <action selector="previousButton:" destination="-1" eventType="touchUpInside" id="ct8-LP-dVE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="HcH-wG-CSh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="105" id="7Qj-hJ-Vo7"/>
+                <constraint firstItem="59d-qs-j5o" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="105" id="LhD-1Z-gMZ"/>
+                <constraint firstAttribute="trailing" secondItem="HcH-wG-CSh" secondAttribute="trailing" constant="34" id="Q3G-kl-P8y"/>
+                <constraint firstItem="59d-qs-j5o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="35" id="tct-Rt-KXr"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="299" y="154"/>
+        </view>
+    </objects>
+</document>
