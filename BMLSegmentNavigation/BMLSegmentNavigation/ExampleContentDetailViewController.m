@@ -48,7 +48,7 @@
     
     BMLTableView *bTableView = [[BMLTableView alloc] init];
     [bTableView creatTableViewWithFrame:self.view.frame style:UITableViewStyleGrouped target:self];
-    bTableView.kDataSource = [NSMutableArray arrayWithArray:@[@[@"爱情",@"婚姻",@"恋爱",@"情感",@"励志与成功",@"家庭事业",@"亲自"],@[@"教育",@"爱情",@"婚姻",@"恋爱",@"情感",@"励志与成功",@"家庭事业"],@[@"亲自"]]];
+    bTableView.kDataSource = [NSMutableArray arrayWithArray:@[@[@"爱情",@"婚姻",@"恋爱",@"情感",@"励志与成功",@"家庭事业",@"亲自"],@[@"教育",@"爱情",@"励志与成功",@"家庭事业"],@[@"亲自"]]];
     
 }
 
