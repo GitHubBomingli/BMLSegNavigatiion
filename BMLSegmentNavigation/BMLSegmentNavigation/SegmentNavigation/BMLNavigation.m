@@ -137,6 +137,8 @@
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
     _selectedIndex = selectedIndex;
     
+    contentVC.selectedIndex = selectedIndex;
+    titleController.selectedIndex = selectedIndex;
 }
 
 - (void)setIsDown:(BOOL)isDown {
@@ -148,6 +150,7 @@
 #pragma mark - BMLTitleSegmentControllerDelegate
 - (void)tapTitleSegmentController:(BMLTitleSegmentController *)titleSegmentController titleLabel:(BMLTitleCustomLabel *)titleLabel index:(NSInteger)index {
     NSLog(@"########点击了第%ld个########",index);
+    _selectedIndex = index;
     contentVC.selectedIndex = index;
 }
 
@@ -163,6 +166,7 @@
 
 - (void)contentViewController:(BMLContentViewController *)contentViewController dragToIndex:(NSInteger)index {
     NSLog(@"***********%s,%ld**********",__FUNCTION__,index);
+    _selectedIndex = index;
     titleController.selectedIndex = index;
 }
 
