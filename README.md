@@ -102,13 +102,13 @@ Example
 
     exampleVC = [[BMLNavigation alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) childs:[self creatChilds] titleStyle:KTitleStyleModeMask];
     exampleVC.maskColor = [UIColor colorWithRed:0.173 green:1.000 blue:0.128 alpha:1.000];
-    exampleVC.titleColor = [UIColor blueColor];
     exampleVC.selectedIndex = 1;
     exampleVC.isDown = YES;//是否有右侧按钮
     exampleVC.delegate = self;
     exampleVC.downButtonCallback = ^(UIButton *sender) {
-        
+        //点击右侧按钮的回调
     };
+    [self.navigationController pushViewController:exampleVC animated:YES];
 
 #######################################################
 生成子控制器数组(creatChilds方法)
