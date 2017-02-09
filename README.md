@@ -110,7 +110,9 @@ Example
         
     };
 
-
+#######################################################
+生成子控制器数组
+#######################################################
     NSMutableArray *contents = [NSMutableArray array];
     for (NSInteger i = 0; i != titles.count; i ++) {
         ExampleContentDetailViewController *contentDetailVC = [[ExampleContentDetailViewController alloc] init];
