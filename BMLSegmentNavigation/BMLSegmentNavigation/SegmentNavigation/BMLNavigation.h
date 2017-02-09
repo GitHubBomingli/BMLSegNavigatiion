@@ -10,6 +10,23 @@
 #import "BMLTitleSegmentController.h"
 #import "BMLContentViewController.h"
 
+@class BMLNavigation;
+
+@protocol BMLNavigationDelegate <NSObject>
+
+@optional
+/**
+ *  切换子控制器时调用
+ *
+ *  @param navigation          分段导航的控制器
+ *  @param title        子控制器的title
+ *  @param index 索引
+ *  @return void
+ */
+- (void)navigation:(BMLNavigation *)navigation title:(NSString *)title index:(NSInteger)index;
+
+@end
+
 @interface BMLNavigation : UIViewController
 
 /**
@@ -24,6 +41,11 @@
 - (instancetype)initWithFrame:(CGRect)frame childs:(NSArray *)childs titleStyle:(KTitleStyleMode)titleStyleMode;
 
 /**
+ *  设置代理
+ */
+@property (weak, nonatomic) id <BMLNavigationDelegate> delegate;
+
+/**
  *  需要导航的子控制器数组
  */
 @property (strong ,nonatomic) NSMutableArray *childs;
@@ -31,7 +53,7 @@
 /**
  *  导航条的风格
  */
-@property (assign ,nonatomic) KTitleStyleMode titleStyleMode;
+@property (assign ,nonatomic ,readonly) KTitleStyleMode titleStyleMode;
 
 /**
  *  遮盖的颜色，如果导航条的风格是KTitleStyleModeMask，则需要设置

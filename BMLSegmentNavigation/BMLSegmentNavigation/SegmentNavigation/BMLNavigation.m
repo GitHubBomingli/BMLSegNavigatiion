@@ -21,7 +21,7 @@
     
     NSMutableArray *titles;
     
-    UIScrollView *superScroll;
+//    UIScrollView *superScroll;
     
 }
 
@@ -42,18 +42,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    superScroll = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:superScroll];
+//    superScroll = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+//    [self.view addSubview:superScroll];
     
     self.view.backgroundColor = [UIColor whiteColor];
     //获得屏幕大小
     screenSize = [UIScreen mainScreen].bounds.size;
+        
+    //创建内容controller
+    [self creatContentController];
     
     //创建标题导航栏
     [self creatTitleController];
-    
-    //创建内容controller
-    [self creatContentController];
     
 }
 #pragma mark - creat
@@ -85,7 +85,7 @@
     
     [self addChildViewController:titleController];
     UIView *titleView = [[UIView alloc] initWithFrame:titleRect];
-    [superScroll addSubview:titleView];
+    [self.view addSubview:titleView];
     [titleView addSubview:titleController.view];
     [titleController didMoveToParentViewController:self];
 }
@@ -95,12 +95,12 @@
         _downButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _downButton.frame = CGRectMake(CGRectGetMaxX(superFrame) - 38, CGRectGetMinY(superFrame), 38, 40);
         _downButton.layer.shadowColor = [UIColor blackColor].CGColor;
-        _downButton.layer.shadowOpacity = 0.8;
-        _downButton.layer.shadowOffset = CGSizeMake(-2, 0);
+        _downButton.layer.shadowOpacity = 0.7;
+        _downButton.layer.shadowOffset = CGSizeMake(-1, 0);
         _downButton.backgroundColor = [UIColor whiteColor];
-        
+        [_downButton setImage:[[UIImage imageNamed:@"向下箭头"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
         [_downButton addTarget:self action:@selector(clickDownButton:) forControlEvents:UIControlEventTouchUpInside];
-        [superScroll addSubview:_downButton];
+        [self.view addSubview:_downButton];
     }
 }
 - (void)clickDownButton:(UIButton *)sender {
@@ -124,7 +124,7 @@
     contentVC.selectedIndex = _selectedIndex;
     contentVC.delegate = self;
     UIView *superView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(superFrame), CGRectGetMinY(superFrame) + 40, CGRectGetWidth(superFrame), CGRectGetHeight(superFrame) - 40)];
-    [superScroll addSubview:superView];
+    [self.view addSubview:superView];
     [self addChildViewController:contentVC];
     
     [superView addSubview:contentVC.view];
@@ -149,9 +149,12 @@
 
 #pragma mark - BMLTitleSegmentControllerDelegate
 - (void)tapTitleSegmentController:(BMLTitleSegmentController *)titleSegmentController titleLabel:(BMLTitleCustomLabel *)titleLabel index:(NSInteger)index {
-    NSLog(@"########点击了第%ld个########",index);
     _selectedIndex = index;
     contentVC.selectedIndex = index;
+    
+    if ([self.delegate respondsToSelector:@selector(navigation:title:index:)]) {
+        [self.delegate navigation:self title:[titles objectAtIndex:index] index:index];
+    }
 }
 
 - (void)TitleSegmentController:(BMLTitleSegmentController *)titleSegmentController insertTitle:(NSString *)title withIndex:(NSInteger)index {
@@ -165,9 +168,12 @@
 #pragma mark - BMLContentViewControllerDelegate
 
 - (void)contentViewController:(BMLContentViewController *)contentViewController dragToIndex:(NSInteger)index {
-    NSLog(@"***********%s,%ld**********",__FUNCTION__,index);
     _selectedIndex = index;
     titleController.selectedIndex = index;
+    
+    if ([self.delegate respondsToSelector:@selector(navigation:title:index:)]) {
+        [self.delegate navigation:self title:[titles objectAtIndex:index] index:index];
+    }
 }
 
 - (void)contentViewController:(BMLContentViewController *)contentViewController insertContent:(UIViewController *)viewController AtIndex:(NSInteger)index {

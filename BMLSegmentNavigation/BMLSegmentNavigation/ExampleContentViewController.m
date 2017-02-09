@@ -12,7 +12,7 @@
 #import "BMLNavigation.h"
 
 
-@interface ExampleContentViewController ()
+@interface ExampleContentViewController ()<BMLNavigationDelegate>
 
 @end
 
@@ -34,38 +34,26 @@
     
 }
 
-- (void)insertNewViewController {
-    ExampleContentDetailViewController *contentDetailVC = [[ExampleContentDetailViewController alloc] init];
-    contentDetailVC.title = @"新插入的页";
-    contentDetailVC.contentLabel.text = @"新插入的页";
-    contentDetailVC.contentString = @"新插入的页";
-    
-    [exampleVC insertContent:contentDetailVC AtIndex:1];
-}
-
-- (void)deleteViewController {
-    
-    
-    [exampleVC deleteContentAtIndex:1];
-}
-
 - (IBAction)previousButton:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)nextButton:(UIButton *)sender {
     
-    
-    exampleVC = [[BMLNavigation alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 64) childs:[self creatChilds] titleStyle:KTitleStyleModeMask];
+    exampleVC = [[BMLNavigation alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) childs:[self creatChilds] titleStyle:KTitleStyleModeMask];
     exampleVC.maskColor = [UIColor colorWithRed:0.173 green:1.000 blue:0.128 alpha:1.000];
     exampleVC.titleColor = [UIColor blueColor];
     exampleVC.selectedIndex = 1;
-    exampleVC.isDown = NO;
-    
-    __weak typeof(self) blockSelf = self;
+    exampleVC.isDown = YES;//是否有右侧按钮
+    exampleVC.delegate = self;
     exampleVC.downButtonCallback = ^(UIButton *sender) {
-        [blockSelf insertNewViewController];
+        
     };
     
     [self.navigationController pushViewController:exampleVC animated:YES];
+}
+
+- (void)navigation:(BMLNavigation *)navigation title:(NSString *)title index:(NSInteger)index {
+    NSLog(@"&*&*&* %ld %@ &*&*&*",index,title);
 }
 
 - (NSArray *)creatChilds {
