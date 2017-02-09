@@ -111,8 +111,6 @@ Example
     };
 
 
-- (NSArray *)creatChilds {
-
     NSMutableArray *contents = [NSMutableArray array];
     for (NSInteger i = 0; i != titles.count; i ++) {
         ExampleContentDetailViewController *contentDetailVC = [[ExampleContentDetailViewController alloc] init];
@@ -121,4 +119,3 @@ Example
         [contents addObject:contentDetailVC];
     }
     return contents;
-}
