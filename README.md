@@ -98,9 +98,7 @@ BMLNavigation.h
 #######################################################
 Example
 #######################################################
-    titles = @[@"爱情",@"婚姻",@"恋爱",@"情感",@"励志与成功",@"家庭事业",@"亲自",@"教育"];
-
-    exampleVC = [[BMLNavigation alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) childs:[self creatChilds] titleStyle:KTitleStyleModeMask];
+    exampleVC = [[BMLNavigation alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) childs:[self creatChilds] titleStyle:KTitleStyleModeMask];
     exampleVC.maskColor = [UIColor colorWithRed:0.173 green:1.000 blue:0.128 alpha:1.000];
     exampleVC.selectedIndex = 1;
     exampleVC.isDown = YES;//是否有右侧按钮
