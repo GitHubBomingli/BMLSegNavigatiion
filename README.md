@@ -1,14 +1,11 @@
 # BMLSegNavigatiion
 分段导航
 
-#######################################################
+## 引用
 BMLNavigation.h
-#######################################################
 
-@class BMLNavigation;
-
-@protocol BMLNavigationDelegate <NSObject>
-
+## 代理 BMLNavigationDelegate
+```
 @optional
 /**
  *  切换子控制器时调用
@@ -19,11 +16,10 @@ BMLNavigation.h
  *  @return void
  */
 - (void)navigation:(BMLNavigation *)navigation title:(NSString *)title index:(NSInteger)index;
-
-@end
-
-@interface BMLNavigation : UIViewController
-
+```
+## 属性及方法
+### 初始化方法
+```
 /**
  *  初始化一个分段导航的控制器
  *
@@ -34,7 +30,9 @@ BMLNavigation.h
  *  @return 分段导航控制器
  */
 - (instancetype)initWithFrame:(CGRect)frame childs:(NSArray *)childs titleStyle:(KTitleStyleMode)titleStyleMode;
-
+```
+### 属性
+```
 /**
  *  设置代理
  */
@@ -78,7 +76,10 @@ BMLNavigation.h
  *  点击导航条右侧按钮的回调事件
  */
 @property (strong ,nonatomic) void(^downButtonCallback)(UIButton *);
+```
 
+### 方法
+```
 /**
  *  插入一个子控制器
  *
@@ -92,12 +93,10 @@ BMLNavigation.h
  *  @param index 要删除的位置
  */
 - (void)deleteContentAtIndex:(NSInteger)index;
+```
 
-
-
-#######################################################
-Example
-#######################################################
+## 示例
+```
     exampleVC = [[BMLNavigation alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) childs:[self creatChilds] titleStyle:KTitleStyleModeMask];
     exampleVC.maskColor = [UIColor colorWithRed:0.173 green:1.000 blue:0.128 alpha:1.000];
     exampleVC.selectedIndex = 1;
@@ -107,10 +106,11 @@ Example
         //点击右侧按钮的回调
     };
     [self.navigationController pushViewController:exampleVC animated:YES];
+```
 
-#######################################################
-生成子控制器数组(creatChilds方法)
-#######################################################
+生成子控制器数组
+```
+- (NSMutableArray *)creatChilds {
     NSMutableArray *contents = [NSMutableArray array];
     for (NSInteger i = 0; i != titles.count; i ++) {
         ExampleContentDetailViewController *contentDetailVC = [[ExampleContentDetailViewController alloc] init];
@@ -119,3 +119,5 @@ Example
         [contents addObject:contentDetailVC];
     }
     return contents;
+}
+```
